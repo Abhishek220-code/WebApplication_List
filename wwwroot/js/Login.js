@@ -12,17 +12,14 @@
 });
 
 function login() {
-    var username = $("#username").val();
-    var password = $("#password").val();
-    var rememberme = $("#rememberMe").is(":checked");
 
     $.ajax({
         url: '/auth/Login',
         type: 'POST',
         data: {
-            Username: username,
-            Password: password,
-            RememberMe: rememberme
+            Username: $("#username").val(),
+            Password: $("#password").val(),
+            RememberMe: $("#rememberMe").is(":checked"),
         },
         success: function (res) {
             window.location.href = "/User/List";
