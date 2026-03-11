@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/iofrm-style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/iofrm-theme14.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <script src="~/js/Common.js?v=1.0"></script>
+    <script src="~/js/login.js?v=1.0"></script>
+
+    <div class="form-body">
+        <div class="iofrm-layout">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Get more things done with Loggin platform.</h3>
+                        <div class="page-links">
+                            <a href="/User/Login" class="active">Login</a><a href="/User/SignUP">Sign Up</a>
+                        </div>
+                        <form method="post" id="loginForm">
+                            <input class="form-control"id="username" type="text" name="username" placeholder="Username" required>
+        
+                        <div class="position-relative">
+                            <input type="password" id="password" class="form-control pe-5" placeholder="Password" required>
+                            <i class="fa fa-eye toggle-password-icon" id="showpassword"></i>
+                        </div>
+
+                            <div class="form-button" style="display:flex; align-items:center; gap:15px;">
+                                <button type="submit" class="ibtn">Login</button>
+
+                                <div style="display:flex; align-items:center;">
+                                <input type="checkbox" id="rememberMe" class="form-check-input"
+                                           style="width:18px; height:18px; margin-right:5px;" />
+                                    <label for="rememberMe" style="margin:0;">Remember Me</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <style>
+    .toggle-password-icon {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6c757d;
+    }
+
+    </style>
+
+
+
+

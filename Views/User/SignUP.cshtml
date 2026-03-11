@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;
+}
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Employee Management System</title>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="~/css/iofrm-style.css" />
+    <link rel="stylesheet" href="~/css/iofrm-theme14.css" />\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <script src="~/js/Common.js?v=1.0"></script>
+    <script src="~/js/signup.js?v=1.1"></script>
+
+    <div class="form-body">
+        <div class="iofrm-layout">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+           
+                        <h3>Get more things done with Loggin platform.</h3>
+                        <div class="page-links">
+                            <a href="/User/Login">Login</a><a href="/User/SignUP" class="active">Sign Up</a>
+                        </div>
+                        <form id="signupForm">
+                            <input class="form-control" id="username" type="text" name="name" placeholder="Username" required>
+                            <input class="form-control" id="password" type="password" name="password" placeholder="Password" required>
+                            <div class="position-relative">
+                            <input type="password" id="Confirmpassword" class="form-control pe-5" placeholder="Confirm Password" required>
+                                <i class="fa fa-eye toggle-password-icon" id="showpassword"></i>
+                            </div>
+                            <div class="form-button">
+                                <button type="submit" class="ibtn">Sign Up</button>
+                            </div>
+                        </form>
+                        <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050">
+                            <div id="statusToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="d-flex">
+                                    <div class="toast-body" id="statusMessage">
+                                        <!-- Message goes here -->
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<style>
+    .toggle-password-icon {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #6c757d;
+    }
+
+</style>
+
+ 
+  
+

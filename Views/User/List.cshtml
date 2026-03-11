@@ -1,0 +1,340 @@
+﻿@model EmployeeVM
+
+<script src="~/js/Common.js?v=1.1"></script>
+<script src="~/js/List.js?v=1.7"></script>
+
+<div class="card shadow-sm border-0 h-100">
+
+    <!-- HEADER -->
+    <div class="card-header bg-grey d-flex align-items-center py-2">
+        <div class="d-flex align-items-center gap-2">
+            <i class="fa fa-table text-muted"></i>
+            <h5 class="mb-0 fw-semibold">Employee Master</h5>
+        </div>
+
+        <div class="ms-auto d-flex gap-2">
+            <button id="addEmployeeBtn" class="btn btn-sm btn-custom" data-bs-toggle="modal" data-bs-target="#employeeModal">
+                <i class="fa fa-plus"></i> Add Employee
+            </button>
+            <button id="addDesignationbtn" class="btn btn-sm btn-custom" data-bs-toggle="modal" data-bs-target="#designationModal">
+                <i class="fa fa-plus"></i> Add Designation
+            </button>
+        </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="card-body p-2">
+        <!-- FILTERS -->
+        <form action="" method="post" id="frmSEmployeeMaster">
+
+        <div class="row g-2 mb-2" style="margin:.5rem;">
+            <div class="col-md-3">
+                <label class="form-label small mb-1">Designation</label>
+                <select class="form-select form-select-sm" id="ddlEmpdesig">                     
+                    <option value="">--Select Designation--</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label small mb-1">Employee Name</label>
+                <input type="text" class="form-control form-control-sm" placeholder="Search name" id="txtEmpname">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label small mb-1">Status</label>
+                    <select class="form-select form-select-sm" id="ddlEmpStatus">
+                        <option value="">-- Select Status --</option>
+                        <option value="0">OnRoll</option>
+                        <option value="1">Probation</option>
+                        <option value="2">Resigned</option>
+                    </select>
+            </div>
+
+            <div class="col-md-3 d-flex align-items-end gap-2">
+                <button class="btn btn-sm btn-success">
+                    <i class="fa fa-search"></i> Search
+                </button>
+                <button class="btn btn-sm btn-danger" type="reset">
+                 <i class ="fa fa-undo" aria-hidden="true"></i> Reset
+                </button>
+                    <!-- Export Button -->
+                    <a id="btnds" class="btn btn-success btn-sm" href="/Home/Dashboard" role="button">Export</a>
+
+            </div>
+        </div>
+        </form>
+        <!-- GRID -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm align-middle mb-0" id="employeeTable">
+                <thead class="table-light">
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Designation</th>
+                        <th>Address</th>
+                        <th>Date of Joining</th>
+                        <th>Created By</th>
+                        <th>Modified By</th>
+                        <th>Created Time</th>
+                        <th>Modified Time</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!--Employee Modal-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+     class="modal fade" id="employeeModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <form id="AddEmployeeDetail">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa-address-card"></i> <label id="Emplbl"></label>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Employee Name</label>
+                            <input name="EmployeeName" class="form-control" id="Empname" required />
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label fw-bold" >Employee Document</label>
+                                <input class="form-control" type="file" id="EmpformFile" accept=".jpg,.jpeg,.png,.gif,.pdf">
+                                <div id="docPreview"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Designation</label>
+                            @* <select id="EmpDesig"
+                                    asp-for="Employee.Emp_DesignationId"
+                                    asp-items="Model.Designations"
+                                    class="form-select">
+                                <option value="">-- Select Designation --</option>
+                            </select> *@
+                            <select class="form-select" id="EmpDesig">
+                                <option value="">--Select Designation--</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold d-block">Gender</label>
+                            <div class="d-flex align-items-center mt-1">
+                                <div class="form-check me-4">
+                                    <input class="form-check-input" type="radio" name="GenderId" id="Male" value="0">
+                                    <label class="form-check-label" for="Male">Male</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="GenderId" id="Female" value="1">
+                                    <label class="form-check-label" for="Female">Female</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Date of Joining</label>
+                            <div class="position-relative">
+                                <input type="text" class="form-control" id="DateofJoining" placeholder="DD-MM-YYYY" readonly>
+                                <i class="fa fa-calendar-alt calendar-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Status</label>
+                            <select class="form-select" id="EmpStatus">
+                                <option value="">-- Select Status --</option>
+                                <option value="0">OnRoll</option>
+                                <option value="1">Probation</option>
+                                <option value="2">Resigned</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label fw-bold">Address</label>
+                            <input name="EmpAddress" class="form-control" id="EmpAddress" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="hidden" id="EmployeeID" name="EmployeeId" />
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Designation Modal -->
+<div class="modal fade" id="designationModal" tabindex="-1" aria-labelledby="designationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <form id="AddEmpDesignation">
+            <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa fa-address-card"></i>
+                        <label id="designationlbl"></label>
+                    </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                    <div class="row g-3 align-items-end" style=" margin-left:.2rem;">
+                    <div class="col-md-5">
+                        <label class="form-label fw-bold">Designation Name</label>
+                        <input type="text" class="form-control" id="DesignationName" placeholder="Enter designation" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Priority</label>
+                        <input type="number" class="form-control" id="DPriority" placeholder="Priority">
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" id="inactive">
+                            <label class="form-check-label fw-bold" for="inactive">
+                                Inactive
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive mt-4">
+                    <table class="table table-bordered table-sm align-middle" id="tbldesignation"> 
+                        <thead class="table-light">
+                            <tr>
+                                <th>Designation Name</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                         <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <input type="hidden" id="DesignationID" name="DesignationId" />
+                <button class="btn btn-success btn-sm" type="submit">
+                    Save Designation
+                </button>
+                <button class="btn btn-secondary btn-sm" type="button" data-bs-dismiss="modal">
+                    Close
+                </button>
+                    <button type="reset" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title="Clear all fields" id="resetDesignationBtn">
+                        <i class="fa fa-undo me-1"></i> Reset
+                    </button>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    #wrapper {
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 6px;
+    }
+
+    .card {
+        border-radius: 12px;
+    }
+
+    .table th {
+        font-weight: 600;
+    }
+
+    .modal-content {
+        border-radius: 12px;
+    }
+
+    .content {
+        width: 100%;
+        background-color: #f9fafb;
+    }
+
+    .table thead th {
+        background-color: #e9ecef;
+        color: #212529;
+        font-weight: 600;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .bg-grey{
+        background-color: #dee2e6 !important;
+    }
+
+    .btn-custom {
+        background: linear-gradient(135deg, #0d9488, #14b8a6); /* Teal */
+        color: #fff;
+        font-weight: 500;
+        padding: 6px 14px; /* smaller size */
+        border-radius: 6px; /* slightly tighter */
+        border: none;
+        font-size: 13px; /* smaller text */
+        line-height: 1.4;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 4px 10px rgba(13, 148, 136, 0.25);
+    }
+
+        .btn-custom:hover {
+            background: linear-gradient(135deg, #0f766e, #0d9488);
+            color: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(13, 148, 136, 0.35);
+        }
+
+        .btn-custom:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 8px rgba(13, 148, 136, 0.3);
+        }
+
+        .btn-custom:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.4);
+        }
+
+    .calendar-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+        pointer-events: none; /* allows click on input */
+        font-size: 14px;
+    }
+
+
+</style>

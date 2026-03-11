@@ -1,0 +1,27 @@
+{
+  "version": "3.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "library": "jquery-datatables@1.10.18",
+      "destination": "wwwroot/lib/jquery-datatables/",
+      "files": [
+        "css/jquery.dataTables.css",
+        "css/jquery.dataTables.min.css",
+        "images/sort_asc.png",
+        "images/sort_asc_disabled.png",
+        "images/sort_both.png",
+        "images/sort_desc.png",
+        "images/sort_desc_disabled.png",
+        "js/jquery.dataTables.js",
+        "js/jquery.dataTables.min.js",
+        "package.json"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/lib/datatables/"
+    }
+  ]
+}
