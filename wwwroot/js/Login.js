@@ -28,7 +28,7 @@ function login() {
             window.location.href = "/User/List";
         },
         error: function (xhr) {
-            alert(xhr.responseJSON?.message || "Login failed");
+            showToast(xhr.responseJSON?.message || "Login failed"); // added toast for error feedback
         },
     });
 }
